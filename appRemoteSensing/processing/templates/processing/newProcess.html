@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% block title %}Procesamiento{% endblock %}
+{%load static%}
+{%block background %}{% static 'core/img/datasets-bg.jpg' %}{%endblock%}
+{%block headers %}
+<h1>Procesamiento</h1>
+<span class="subheading">Imagenes HSI disponibles</span>
+{%endblock%}
+{% block content %}
+    {%for dataset in datasets %}
+	    <!-- Contenido Principal -->
+	    <div class="container">
+            <!-- Proyecto -->
+            <div class="row project">  	
+                <div class="col-lg-3 col-md-4 offset-lg-1">
+                    <img class="img-fluid" src="{{dataset.image.url}}" alt="">
+                </div>
+              <div class="col-lg-7 col-md-8">
+                    <h2 class="section-heading title"><a href="{% url 'home' %}">{{dataset.name}}</a></h2>   
+                <p align="justify">{{dataset.description}}</p>
+                </div>
+            </div>
+    {% endfor %}
+{% endblock%}
