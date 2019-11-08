@@ -1,13 +1,13 @@
+from django.views.generic.base import TemplateView
 from django.shortcuts import render
-from django.shortcuts import HttpResponse
 
 # Create your views here.
-def home(request):
-	return render(request,"core/home.html")
+class HomePageView(TemplateView):
+    template_name = "core/home.html"
 
-def about(request):
-	return render(request,"core/about.html")
-	
-def contact(request):
-	return render(request,"core/contact.html")
+class AboutPageView(TemplateView):
+    template_name = "core/about.html"
+
+class ContactPageView(TemplateView):
+    template_name = "core/contact.html"
 

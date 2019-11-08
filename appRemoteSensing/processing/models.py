@@ -17,15 +17,17 @@ class DataSet(models.Model):
     CLASSIFIER_CHOISES=(
         ('LRC','Logistic Regression'),
         ('SVM','Maquina de Sporte Vectorial'),
-        ('RIE','Riemmanian Classifier'),
+        ('RIE','Riemannian Classifier'),
     )
     
     name = models.CharField(max_length=200, verbose_name="Nombre", unique = True)
     description = models.TextField(verbose_name="Descripción")
     image = models.ImageField(verbose_name="Imagen", upload_to="dataSets") 
-    dimension = models.CharField(max_length=100, verbose_name="Reducción Dimensional", choices= DIMENSION_CHOISES,default='')
-    features = models.CharField(max_length=100, verbose_name="Extracción Caracteristicas", choices= FEATURES_CHOISES,default='')
-    classifier = models.CharField(max_length=100, verbose_name="Extracción Información", choices= CLASSIFIER_CHOISES,default='')
+    
+    dimension = models.CharField(max_length=10, verbose_name="Reducción Dimensional", choices= DIMENSION_CHOISES,    default='')
+    features = models.CharField(max_length=10, verbose_name="Extracción de Caracteristicas", choices= FEATURES_CHOISES, default='')
+    classifier = models.CharField(max_length=10, verbose_name="Selección de Información", choices= CLASSIFIER_CHOISES, default='')
+    
     created = models.DateTimeField(auto_now_add=True,verbose_name="Fecha de Creación")
     updated = models.DateTimeField(auto_now=True,verbose_name="Fecha de Modificación")
 

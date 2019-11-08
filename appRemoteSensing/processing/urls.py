@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views as processing_views
+from .views import DatasetListView, DatasetDetailView, DatasetUpdate
 
 urlpatterns = [
-    path('processing/',processing_views.newProcess,name="processing"),
+    path('', DatasetListView.as_view(), name="processing"),
+    path('<int:pk>/<slug:slug>/', DatasetDetailView.as_view(), name="img_processing"),
+    path('update/<int:pk>/', DatasetUpdate.as_view(), name='update'),
 ]

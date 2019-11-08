@@ -7,7 +7,7 @@
 <span class="subheading">Imagenes HSI disponibles</span>
 {%endblock%}
 {% block content %}
-    {%for dataset in datasets %}
+    {%for dataset in dataset_list%}
 	    <!-- Contenido Principal -->
 	    <div class="container">
             <!-- Proyecto -->
@@ -16,7 +16,7 @@
                     <img class="img-fluid" src="{{dataset.image.url}}" alt="">
                 </div>
               <div class="col-lg-7 col-md-8">
-                    <h2 class="section-heading title"><a href="{% url 'home' %}">{{dataset.name}}</a></h2>   
+                    <h2 class="section-heading title"><a href="{% url 'update' dataset.id %}">{{dataset.name}}</a></h2>   
                 <p align="justify">{{dataset.description}}</p>
                 </div>
             </div>

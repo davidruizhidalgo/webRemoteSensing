@@ -1,0 +1,21 @@
+{% extends 'processing/base_new.html' %}
+{% block title %}{{dataset.name}}{% endblock %}
+{%load static%}
+{%block datos%}{{dataset.name}}{%endblock%}
+
+{% block content %}
+<!-- Contenido Principal -->
+<div class="container">
+    <!-- Proyecto -->
+    <div class="row project">  	
+        <div class="col-lg-3 col-md-4 offset-lg-1">
+            <img class="img-fluid" src="{{dataset.image.url}}" alt="">
+        </div>
+      <div class="col-lg-7 col-md-8">
+            <h2 class="section-heading title"><a href="{% url 'home' %}">{{dataset.name}}</a></h2>   
+        <p>{{dataset.dimension}}</p>
+        <p>{{dataset.features}}</p>
+        <p>{{dataset.classifier}}</p>
+        </div>
+    </div>
+{% endblock %}
