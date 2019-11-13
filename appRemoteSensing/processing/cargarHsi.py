@@ -9,10 +9,10 @@ import matplotlib.pyplot as plt
 class CargarHsi:
     
     def __init__(self,name_data):
-        dicData = {'IndianPines' : ["../../../dataSets/Indian_pines.mat", 'indian_pines_corrected', "../../../dataSets/Indian_pines_gt.mat", 'indian_pines_gt'],
-                    'Salinas' : ["../../../dataSets/Salinas.mat", 'salinas_corrected', "../../../dataSets/Salinas_gt.mat", 'salinas_gt'],
-                    'Pavia' : ["../../../dataSets/Pavia.mat", 'pavia', "../../../dataSets/Pavia_gt.mat", 'pavia_gt'],
-                    'PaviaU' : ["../../../dataSets/PaviaU.mat", 'paviaU', "../../../dataSets/PaviaU_gt.mat", 'paviaU_gt'], }
+        dicData = {'Indian Pines' : ["../../dataSets/Indian_pines.mat", 'indian_pines_corrected', "../../dataSets/Indian_pines_gt.mat", 'indian_pines_gt'],
+                    'Salinas Valley' : ["../../dataSets/Salinas.mat", 'salinas_corrected', "../../dataSets/Salinas_gt.mat", 'salinas_gt'],
+                    'Pavia Center' : ["../../dataSets/Pavia.mat", 'pavia', "../../dataSets/Pavia_gt.mat", 'pavia_gt'],
+                    'Pavia University' : ["../../dataSets/PaviaU.mat", 'paviaU', "../../dataSets/PaviaU_gt.mat", 'paviaU_gt'], }
         #CARGAR CUBO DE DATOS
         mat = sio.loadmat(dicData[name_data][0]) # Cargar archivo .mat
         data = np.array(mat[dicData[name_data][1]]) # Convertir a numpy array
