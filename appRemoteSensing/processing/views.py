@@ -12,14 +12,14 @@ class DatasetListView(ListView):
     model = DataSet
 	
 class DatasetDetailView(DetailView):
-    model = DataSet
-	#REALIZAR PROCESAMIENTO #
-
+	model = DataSet
+	#REALIZAR PROCESAMIENTO
 	#RETORNAR VARIABLES DE CONTEXTO A LA VISTA
-	#def get_context_data(self, **kwargs):
-    #    context = super().get_context_data(**kwargs)
-	#	#procesos
-	#	return context
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		#procesos
+		context['data'] = 1.23
+		return context
 
 class DatasetUpdate(UpdateView):
 	model = DataSet
