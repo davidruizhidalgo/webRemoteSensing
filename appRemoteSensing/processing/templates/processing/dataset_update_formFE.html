@@ -14,8 +14,8 @@
                     <div style="display: none">  {{ form.as_p}} </div>
 
                 <ul style= "list-style-type: none;">
-                    <p><label>Metodo de Reducción Dimensional:</label></p>
-                    {% for radio in form.dimension %}
+                    <p><label>Metodo de Extracción de Caracteristicas:</label></p>
+                    {% for radio in form.features %}
                     <li>
                         {{ radio.tag }}
                         <label for="value_{{ forloop.counter0 }}">{{ radio.choice_label }}</label>

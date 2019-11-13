@@ -27,4 +27,20 @@ class DatasetUpdate(UpdateView):
 	template_name_suffix = '_update_form'
 
 	def get_success_url(self):
+		return reverse_lazy('updateFE', args=[self.object.id]) + '?ok'
+
+class DatasetUpdateFE(UpdateView):
+	model = DataSet
+	form_class = ProcessingForm
+	template_name_suffix = '_update_formFE'
+
+	def get_success_url(self):
+		return reverse_lazy('updateCL', args=[self.object.id]) + '?ok'
+
+class DatasetUpdateCL(UpdateView):
+	model = DataSet
+	form_class = ProcessingForm
+	template_name_suffix = '_update_formCL'
+
+	def get_success_url(self):
 		return reverse_lazy('img_processing', args=[self.object.id, slugify(self.object.name)]) + '?ok'

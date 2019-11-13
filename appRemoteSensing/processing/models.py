@@ -4,15 +4,15 @@ from django.db import models
 class DataSet(models.Model):
     DIMENSION_CHOISES=(
         ('NON','Ninguno'),
-        ('PCA','PCA'),
-        ('EAP','EAP'),
-        ('EEP','EEP'),
+        ('PCA','Componentes Principales'),
+        ('EAP','Attibute Profiles'),
+        ('EEP','Extintion Profiles'),
     )
     FEATURES_CHOISES=(
         ('CNN','Red Convolucional'),
         ('INC','Red Inception'),
-        ('SCA','Autoencoder Convolucional Apilado'),
-        ('BCA','Autoencoder Convolucional Ramificado'),
+        ('SCA','Stacked Autoencoder CNN'),
+        ('BCA','Branched Autoencoder CNN'),
     )
     CLASSIFIER_CHOISES=(
         ('LRC','Logistic Regression'),
@@ -24,9 +24,9 @@ class DataSet(models.Model):
     description = models.TextField(verbose_name="Descripción")
     image = models.ImageField(verbose_name="Imagen", upload_to="dataSets") 
     
-    dimension = models.CharField(max_length=10, verbose_name="Reducción Dimensional", choices= DIMENSION_CHOISES,    default='')
-    features = models.CharField(max_length=10, verbose_name="Extracción de Caracteristicas", choices= FEATURES_CHOISES, default='')
-    classifier = models.CharField(max_length=10, verbose_name="Selección de Información", choices= CLASSIFIER_CHOISES, default='')
+    dimension = models.CharField(max_length=10, verbose_name="Metodo de Reducción Dimensional", choices= DIMENSION_CHOISES,    default='')
+    features = models.CharField(max_length=10, verbose_name="Metodo de Extracción de Caracteristicas", choices= FEATURES_CHOISES, default='')
+    classifier = models.CharField(max_length=10, verbose_name="Metodo de Selección de Información", choices= CLASSIFIER_CHOISES, default='')
     
     created = models.DateTimeField(auto_now_add=True,verbose_name="Fecha de Creación")
     updated = models.DateTimeField(auto_now=True,verbose_name="Fecha de Modificación")
