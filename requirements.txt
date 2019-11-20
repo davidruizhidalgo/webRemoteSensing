@@ -8,3 +8,4 @@ scikit-learn==0.21.3
 scikit-image==0.16.2
 pydot==1.4.1
 siamxt==1.0.0
+tqdm==4.38.0
