@@ -1,7 +1,9 @@
 #Toma los datos del formulario y ejecuta las configuraciones establecidas
+# pylint: disable=E1136  # pylint/issues/3139
 from .cargarHsi import CargarHsi
 from .PCA import princiapalComponentAnalysis
 from .MorphologicalProfiles import morphologicalProfiles
+from .trainNets import trainNetworks
 import numpy as np
 
 class Generate:
@@ -20,9 +22,7 @@ class Generate:
     
     def pca_Analysis(self, imagen):
         pca = princiapalComponentAnalysis()
-        imagenPCA = pca.pca_calculate(imagen, varianza=0.95)
-        if imagenPCA.shape[0]<4: 
-            imagenPCA = pca.pca_calculate(imagen, componentes=4)
+        imagenPCA = pca.pca_calculate(imagen, componentes=7)
         return imagenPCA  
 
     def execution(self):
@@ -42,9 +42,13 @@ class Generate:
             imagen =  mp.EEP(imagen, num_levels=4)      
         
         #Etapa de Extracción de caracteristicas
+        feNet = trainNetworks()
+        feModel = feNet.trainCNN2d(self.object.name, self.object.dimension+'_'+self.object.features, imagen, groundTruth)
         #print(self.object.features)
 
         #Etapa de Selección de información
         #print(self.object.classifier)
+
+        #GENERAR IMAGEN MAPA DE CLASIFICACIÓN y COMPARACIÓN
         
-        return imagen.shape
+        return feModel

@@ -9,3 +9,4 @@ scikit-image==0.16.2
 pydot==1.4.1
 siamxt==1.0.0
 tqdm==4.38.0
+pyriemann==0.2.5
