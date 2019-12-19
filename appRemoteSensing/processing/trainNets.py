@@ -1,8 +1,4 @@
-#CNN 2D
-#ENTRENAMIENTO DE RED CONVOLUCIONAL 2D - CLASIFICACION HSI 
-#Se utiliza PCA para reduccion dimensional y estraccion de caracteristicas espectrales. A la red convolucional se introduce
-#una ventana sxs de la imagen original para la generacion de caracteristicas espaciales a partir de la convolucion. 
-#Se utiliza como capa de salida un clasificador tipo Multinomial logistic regression. Todas las capas utilizan entrenamiento supervisado. 
+#Entrenamiento de diferentes arquitecturas de DNN: CNN2D 
 # pylint: disable=E1136  # pylint/issues/3139
 import warnings
 warnings.filterwarnings('ignore')
@@ -205,12 +201,21 @@ class trainNetworks:
         kappa = cohen_kappa_score(etiquetasPrueba, datosSalida)
         #LOGGER DATOS DE VALIDACIÓN
         logger.savedataPerformance(OA, AA, kappa)
+        path = logger.path
         logger.close()
         #################################################################################################################
-
         #TERMINAR PROCESOS DE KERAS
         K.clear_session()
-        return 'DONE!!!!!!'
+        #RETORNAR ETIQUETAS DE PRUEBA Y PREDICCIÓN
+        class_names = []
+        for i in range(1,groundTruth.max()+1):
+            class_names.append('Class '+str(i))
+        if etiquetasPrueba.ndim>1:
+            etiquetasPrueba = etiquetasPrueba.argmax(axis=1)
+        if datosSalida.ndim>1:
+            datosSalida = datosSalida.argmax(axis=1)
+
+        return etiquetasPrueba, datosSalida, class_names, path
         
     def trainInception(self, dataSet, test, imagenFE, groundTruth):
         pass

@@ -10,3 +10,5 @@ pydot==1.4.1
 siamxt==1.0.0
 tqdm==4.38.0
 pyriemann==0.2.5
+plotly==4.4.1
+ipython==7.10.2

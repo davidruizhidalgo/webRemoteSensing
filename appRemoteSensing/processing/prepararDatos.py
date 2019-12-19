@@ -1,4 +1,5 @@
 #Permite extraer conjuntos de entrenamiento, validacion y prueba en 1D, 2D y 3D
+# pylint: disable=E1136  # pylint/issues/3139
 import math
 import numpy as np
 import matplotlib.pyplot as plt
