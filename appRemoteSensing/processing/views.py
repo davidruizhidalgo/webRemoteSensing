@@ -1,6 +1,7 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
+from django.views.generic.base import TemplateView
 from django.urls import reverse, reverse_lazy
 from django.template.defaultfilters import slugify
 from django.shortcuts import render
@@ -154,14 +155,20 @@ class DatasetDetailView(DetailView):
 		#procesos
 		process = Generate(object)
 		data, true_labels_test, pred_labels_test, class_names = process.execution(train= False)	
-
+		OA_data = data[0]*100
+		AA_data = data[1,0:]*100
+		kappa_data = data[2]
+		metadata = [len(class_names), AA_data[1:].mean()]
 		#Enviar datos a variables de contexto. OA, AA, Kappa, training logger
 		fig = plotlyConfusionMatrix(true_labels=true_labels_test, pred_labels=pred_labels_test, class_names=class_names)
 		confusionData = plot(fig, output_type='div', include_plotlyjs=False)
 
-		context['data'] = data
+		context['OA_data'] = [ '%.2f' % elem for elem in OA_data]
+		context['AA_data'] = [ '%.2f' % elem for elem in AA_data]
+		context['kappa_data'] = [ '%.2f' % elem for elem in kappa_data]
 		context['class_names'] = class_names
 		context['confusionData'] = confusionData
+		context['metadata'] = [ '%.2f' % elem for elem in metadata]
 		return context
 
 class DatasetUpdate(UpdateView):
@@ -187,3 +194,6 @@ class DatasetUpdateCL(UpdateView):
 
 	def get_success_url(self):
 		return reverse_lazy('img_processing', args=[self.object.id, slugify(self.object.name)]) + '?ok'
+
+class ConstructionPageView(TemplateView):
+    template_name = "processing/coming_soon.html"

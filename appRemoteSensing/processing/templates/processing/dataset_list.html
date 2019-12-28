@@ -1,11 +1,6 @@
-{% extends 'core/base.html' %}
+{% extends 'processing/base_creative_new.html' %}
 {% block title %}Procesamiento{% endblock %}
 {%load static%}
-{%block background %}{% static 'core/img/datasets-bg.jpg' %}{%endblock%}
-{%block headers %}
-<h1>Procesamiento</h1>
-<span class="subheading">Imagenes HSI disponibles</span>
-{%endblock%}
 {% block content %}
     {%for dataset in dataset_list%}
 	    <!-- Contenido Principal -->
