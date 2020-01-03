@@ -9,6 +9,10 @@
         <div class="col-md-9 mx-auto">
                 <p align="justify">Establezca la configuración de procesamiento deseada para el conjunto de datos seleccionado.</p>
             </br>
+            <div >
+              <img src="{% static 'processing/img/frm2.png' %}" style = "height:50%; width:100%" class="center">
+            </div>
+          </br>
             <form action="" method="post" >{% csrf_token %}
                     <div style="display: none">  {{ form.as_p}} </div>
 

@@ -9,11 +9,15 @@
         <div class="col-md-9 mx-auto">
                 <p align="justify">Establezca la configuración de procesamiento deseada para el conjunto de datos seleccionado.</p>
             </br>
+            <div >
+              <img src="{% static 'processing/img/frm3.png' %}" style = "height:50%; width:100%" class="center">
+               </div>
+          </br>
             <form action="" method="post" >{% csrf_token %}
                     <div style="display: none">  {{ form.as_p}} </div>
 
                 <ul style= "list-style-type: none;">
-                    <p><label>Metodo de Selección de Información:</label></p>
+                    <p><label>Metodo de Clasificación:</label></p>
                     {% for radio in form.classifier %}
                     <li>
                         {{ radio.tag }}
@@ -22,9 +26,13 @@
                     {% endfor %}
                 </ul>
 
-
-                 <div class="text-center">
-              <input type="submit" class="btn btn-primary btn-block" value="Procesar" />
+                <div class="text-center">
+                  <input id="button" name="button" type="submit" class="btn btn-primary btn-block" value="Procesar" />
+                  <script type="text/javascript">
+                    document.getElementById('button').onclick = function() {
+                      alert("Por favor espere a que la pagina genere los resultados ");
+                    }
+                  </script>
             </div>
           </form>
         </div>
