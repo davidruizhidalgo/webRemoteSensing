@@ -3,25 +3,26 @@ from django.db import models
 # Create your models here.
 class DataSet(models.Model):
     DIMENSION_CHOISES=(
-        ('NON','Ninguno'),
-        ('PCA','Componentes Principales'),
+        ('NON','None'),
+        ('PCA','Principal Component Analysis'),
         ('EAP','Attibute Profiles'),
         ('EEP','Extintion Profiles'),
     )
     FEATURES_CHOISES=(
-        ('CNN','Red Convolucional'),
-        ('INC','Red Inception'),
+        ('CNN','Convolutional Neural Network'),
+        ('INC','Inception Network'),
         ('SCA','Stacked Autoencoder CNN'),
         ('BCA','Branched Autoencoder CNN'),
     )
     CLASSIFIER_CHOISES=(
         ('LRC','Logistic Regression'),
-        ('SVM','Maquina de Sporte Vectorial'),
+        ('SVM','Support Vector Machine'),
         ('RIE','Riemannian Classifier'),
     )
     
     name = models.CharField(max_length=200, verbose_name="Nombre", unique = True)
-    description = models.TextField(verbose_name="Descripción")
+    description = models.TextField(verbose_name="Descripción", default='')
+    description_US = models.TextField(verbose_name="Descripción_US", default='')
     image = models.ImageField(verbose_name="Imagen", upload_to="dataSets") 
     
     dimension = models.CharField(max_length=10, verbose_name="Metodo de Reducción Dimensional", choices= DIMENSION_CHOISES,    default='')

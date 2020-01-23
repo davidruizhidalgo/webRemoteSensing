@@ -1,4 +1,4 @@
-{% extends 'processing/base_creative_new.html' %}
+{% extends 'processing/base_creative_new_us.html' %}
 {% block title %}{{dataset.name}}{% endblock %}
 {%load static%}
 
@@ -11,7 +11,7 @@
     <br>
     <!--MAPAS DE CLASIFICACIóN-->
     <div class="row"> 
-        <h3 class="subsection-heading title">Resultados Dataset {{dataset.name}}</h3> 
+        <h3 class="subsection-heading title">Results Dataset {{dataset.name}}</h3> 
     </div>
     <div class="row project">  	
         <div class="col-lg-4 ">
@@ -38,11 +38,11 @@
             <table class="table table-hover">
                 <tbody>
                         <tr class="text-center" style="font-weight:bold">
-                            <td class="table-active" colspan="2">Indices de Precisión: {{dataset.name}}</td>
+                            <td class="table-active" colspan="2">Accuracy Indices: {{dataset.name}}</td>
                         </tr>
                         <tr class="text-center" style="font-weight:bold">
-                            <td class="table-active">Clases</td>
-                            <td class="table-active">Porcentaje de Precisión [%]</td>
+                            <td class="table-active">Classes</td>
+                            <td class="table-active">Accuracy Percentage [%]</td>
                         </tr>
                     <!--DATOS AVERAGE ACCURACY: {{data.1}} {{class_names}} -->      
                     <script>
@@ -80,7 +80,7 @@
         </div>
     </div>
     <div class="text-center">
-        <button class="btn btn-primary btn-block" type="button" onclick="window.location.href = '{% url 'processing' parametro=Parametro%}'">Reiniciar Proceso</button>
+        <button class="btn btn-primary btn-block" type="button" onclick="window.location.href = '{% url 'processing_us' parametro=Parametro%}'">Restart Process</button>
     </div>
 </div>
 {% endblock %}

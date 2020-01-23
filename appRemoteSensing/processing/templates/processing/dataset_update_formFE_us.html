@@ -1,4 +1,4 @@
-{% extends 'processing/base_creative_new.html' %}
+{% extends 'processing/base_creative_new_us.html' %}
 {% block title %}{{dataset.name}}{% endblock %}
 {%load static%}
 {% block content %}
@@ -7,18 +7,20 @@
     <div class="container">
       <div class="row mt-3 mb-5">
         <div class="col-md-9 mx-auto">
-                <p align="justify">Establezca la configuración de procesamiento deseada para el conjunto de datos seleccionado.</p>
+          <p align="justify">
+            Choose the desired processing settings for the selected data set.
+          </p>
             </br>
             <div >
-              <img src="{% static 'processing/img/frm3.png' %}" style = "height:50%; width:100%" class="center">
-               </div>
+              <img src="{% static 'processing/img/frm_us2.png' %}" style = "height:50%; width:100%" class="center">
+            </div>
           </br>
             <form action="" method="post" >{% csrf_token %}
                     <div style="display: none">  {{ form.as_p}} </div>
 
                 <ul style= "list-style-type: none;">
-                    <p><label>Metodo de Clasificación:</label></p>
-                    {% for radio in form.classifier %}
+                    <p><label>Features Extraction Method:</label></p>
+                    {% for radio in form.features %}
                     <li>
                         {{ radio.tag }}
                         <label for="value_{{ forloop.counter0 }}">{{ radio.choice_label }}</label>
@@ -26,21 +28,13 @@
                     {% endfor %}
                 </ul>
 
-                <div class="text-center">
-                  <input id="button" name="button" type="submit" class="btn btn-primary btn-block" value="Procesar" />
 
+                 <div class="text-center">
+              <input type="submit" class="btn btn-primary btn-block" value="Next" />
             </div>
           </form>
         </div>
       </div>
     </div>
-
-    <div id="overlay">
-      <div class="cv-spinner">
-        <span class="spinner"></span>
-      </div>
-    </div>
-
-
   </main>
 {% endblock %}

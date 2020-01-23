@@ -5,4 +5,7 @@ from django.shortcuts import render
 class IndexPageView(TemplateView):
     template_name = "core/index.html"
 
+class IndexPageViewUS(TemplateView):
+    template_name = "core/index_us.html"
+
 

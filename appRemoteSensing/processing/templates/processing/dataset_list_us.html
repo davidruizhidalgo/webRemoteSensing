@@ -1,4 +1,4 @@
-{% extends 'processing/base_creative_new.html' %}
+{% extends 'processing/base_creative_new_us.html' %}
 {% block title %}Procesamiento{% endblock %}
 {%load static%}
 {% block content %}
@@ -6,7 +6,6 @@
     <h2 class="section-heading title">{{Data}}</h2> 
     <br>
 </div>
-
     {%for dataset in dataset_list%}
 	    <!-- Contenido Principal -->
 	    <div class="container">
@@ -16,8 +15,8 @@
                     <img class="img-fluid" src="{{dataset.image.url}}" alt="">
                 </div>
               <div class="col-lg-7 col-md-8">
-                    <h3 class="section-heading title"><a href="{% url 'update' parametro=Data pk=dataset.id %}">{{dataset.name}}</a></h3>   
-                <p class="text-muted mb-5" align="justify">{{dataset.description}}</p>
+                    <h3 class="section-heading title"><a href="{% url 'update_us' parametro=Data pk=dataset.id %}">{{dataset.name}}</a></h3>   
+                <p class="text-muted mb-5" align="justify">{{dataset.description_US}}</p>
             </div>
         </div>
     </div>

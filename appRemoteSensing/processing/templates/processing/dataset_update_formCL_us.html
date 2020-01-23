@@ -1,4 +1,4 @@
-{% extends 'processing/base_creative_new.html' %}
+{% extends 'processing/base_creative_new_us.html' %}
 {% block title %}{{dataset.name}}{% endblock %}
 {%load static%}
 {% block content %}
@@ -7,17 +7,19 @@
     <div class="container">
       <div class="row mt-3 mb-5">
         <div class="col-md-9 mx-auto">
-                <p align="justify">Establezca la configuración de procesamiento deseada para el conjunto de datos seleccionado.</p>
+          <p align="justify">
+            Choose the desired processing settings for the selected data set.
+          </p>
             </br>
             <div >
-              <img src="{% static 'processing/img/frm3.png' %}" style = "height:50%; width:100%" class="center">
+              <img src="{% static 'processing/img/frm_us3.png' %}" style = "height:50%; width:100%" class="center">
                </div>
           </br>
             <form action="" method="post" >{% csrf_token %}
                     <div style="display: none">  {{ form.as_p}} </div>
 
                 <ul style= "list-style-type: none;">
-                    <p><label>Metodo de Clasificación:</label></p>
+                    <p><label>Classification Method:</label></p>
                     {% for radio in form.classifier %}
                     <li>
                         {{ radio.tag }}
@@ -27,7 +29,7 @@
                 </ul>
 
                 <div class="text-center">
-                  <input id="button" name="button" type="submit" class="btn btn-primary btn-block" value="Procesar" />
+                  <input id="button" name="button" type="submit" class="btn btn-primary btn-block" value="Process" />
 
             </div>
           </form>

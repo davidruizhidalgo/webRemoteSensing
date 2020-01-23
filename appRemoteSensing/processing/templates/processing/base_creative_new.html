@@ -46,6 +46,23 @@
                 <li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="{% url 'index'%}#contact">Contacto</a>
                 </li>
+
+                <li class="nav-item">
+
+                  <div class="dropdown show">
+                    <a class="nav-link  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img class="lang-flag" src="{% static 'core/img/Colombia.png' %}" alt="Español">
+                    </a>
+                  
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="nav-link dropdown-item" href="{% url 'index_us'%}#top"><img class="lang-flag" src="{% static 'core/img/English.png' %}" alt="English"></a>
+                    </div>
+                  </div>
+
+                </li>
+
+
+
               </ul>
             </div>
           </div>

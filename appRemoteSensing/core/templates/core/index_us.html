@@ -1,4 +1,4 @@
-{% extends 'core/base_creative.html' %}
+{% extends 'core/base_creative_us.html' %}
 
 {%load static%}
 {% block title %}Remote Sensing Web{% endblock %}
@@ -15,8 +15,8 @@
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">Aplicación para el procesamiento de imagenes hiperespectrales, orientada al reconocimiento de regiones como vegetación, cultivos y entornos urbanos.</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Saber más</a>
+          <p class="text-white-75 font-weight-light mb-5">Web application for hyperspectral images processing, oriented to the classification of regions such as vegetation, crops and urban environments.</p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find out More</a>
         </div>
       </div>
     </div>
@@ -29,9 +29,9 @@
         <div class="col-lg-8 text-center">
           <h2 class="text-white mt-0">Remote Sensing Web Application</h2>
           <hr class="divider light my-4">
-          <p class="text-white-50 mb-4">Remote Sensing, es una aplicación web orientada al procesamiento de imágenes hiperespectrales (HSI) por medio de técnicas de Deep Learning (DL).</p>
-          <p class="text-white-50 mb-4">La aplicación permite procesar algunas de las HSI más conocidas y comúnmente utilizadas por la comunidad investigativa. A través de un formulario, el usuario tiene la capacidad de ejecutar sobre una imagen seleccionada, modelos previamente entrenados de DL orientados a reducción dimensional, extracción de características y extracción de información.</p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Comenzar</a>
+          <p class="text-white-50 mb-4">Remote Sensing, is a web application oriented to the processing of hyperspectral images (HSI) using Deep Learning (DL) modeles.</p>
+          <p class="text-white-50 mb-4">The application allows to process some of the most known and commonly used HSI by the research community. Through a form, the user has the ability to execute over a selected image, previously trained DL models oriented to dimensional reduction, feature extraction and information extraction.</p>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
         </div>
       </div>
     </div>
@@ -40,34 +40,34 @@
   <!-- Services Section -->
   <section class="page-section" id="services">
     <div class="container" >
-      <h2 class="text-center mt-0">Servicios de Procesamiento Disponibles</h2>
+      <h2 class="text-center mt-0">Available Services</h2>
       <hr class="divider my-4">
       <div class="row">
         <div class="col-lg-4 col-md-6 text-center">
           <div class="mt-5">
-            <a href = "{% url 'processing' parametro='Ejecutar Modelo' %}">
+            <a href = "{% url 'processing_us'  parametro='Execute Model' %}">
               <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
             </a>
-            <h3 class="h4 mb-2">Procesar HSI</h3>
-            <p class="text-muted mb-0">Procesar una HSI de la base de datos utilizando una red profunda entrenada.</p>
+            <h3 class="h4 mb-2">HSI Processing</h3>
+            <p class="text-muted mb-0">Process a database HSI using a deep trained network.</p>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 text-center">
           <div class="mt-5">
-            <a href = "{% url 'processing' parametro='Entrenar Nuevo Modelo' %}">
+            <a href = "{% url 'processing_us'  parametro='Train New Model' %}">
               <i class="fas fa-4x fa-chart-area text-primary mb-4"></i>
             </a>
-            <h3 class="h4 mb-2">Entrenar HSI</h3>
-            <p class="text-muted mb-0">Entrenar un nuevo modelo de red profunda para procesar una HSI de la base de datos.</p>
+            <h3 class="h4 mb-2">HSI Training</h3>
+            <p class="text-muted mb-0">Train a new deep network model to process a database HSI.</p>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 text-center">
           <div class="mt-5">
-            <a href = "{% url 'upload' %}">
+            <a href = "{% url 'upload_us' %}">
               <i class="fas fa-4x fa-database text-primary mb-4"></i>
             </a>
-            <h3 class="h4 mb-2">Cargar HSI</h3>
-            <p class="text-muted mb-0">Cargar una HSI nueva y generar un modelo entrenado de red profunda.</p>
+            <h3 class="h4 mb-2">HSI Loading</h3>
+            <p class="text-muted mb-0">Load a new HSI and generate a deep network trained model.</p>
           </div>
         </div>
       </div>
@@ -164,8 +164,8 @@
   <!-- Call to Action Section -->
   <section class="page-section bg-dark text-white" id="descargar">
     <div class="container text-center">
-      <h2 class="mb-4">Descarga el repositorio del proyecto!</h2>
-      <a class="btn btn-light btn-xl" href="https://github.com/davidruizhidalgo/unsupervisedRemoteSensing">Descargar Ahora</a>
+      <h2 class="mb-4">Download the Repository of the Project!</h2>
+      <a class="btn btn-light btn-xl" href="https://github.com/davidruizhidalgo/unsupervisedRemoteSensing">Download now</a>
     </div>
   </section>
 
@@ -174,9 +174,9 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
-          <h2 class="mt-0">Comunícate con nosotros</h2>
+          <h2 class="mt-0">Let's get in touch!</h2>
           <hr class="divider my-4">
-          <p class="text-muted mb-5">En caso de alguna inquietud, comentario o solicitud de asesoría nos puedes contactar por cualquiera de los siguentes medios:</p>
+          <p class="text-muted mb-5">In case of any concern, comment or request for advice you can contact us by any of the following means:</p>
         </div>
       </div>
       <div class="row">

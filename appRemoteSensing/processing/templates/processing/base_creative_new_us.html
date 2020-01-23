@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
     <head>
 
@@ -12,14 +12,14 @@
       
         <!-- Font Awesome Icons -->
         {% load static %}
-        <link href="{% static 'core/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'processing/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
         <!-- Plugin CSS -->
-        <link href="{% static 'core/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+        <link href="{% static 'processing/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
         <!-- Theme CSS - Includes Bootstrap -->
-        <link href="{% static 'core/css/creative.min.css' %}" rel="stylesheet">
+        <link href="{% static 'processing/css/creative.min.css' %}" rel="stylesheet">
       
       </head>
 
@@ -28,51 +28,50 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
           <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Remote Sensing</a>
-
+            <a class="navbar-brand js-scroll-trigger" href="{% url 'index_us'%}#page-top">Remote Sensing</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="{% url 'index'%}#about">Acerca de</a>
+                  <a class="nav-link js-scroll-trigger" href="{% url 'index_us'%}#about">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="{% url 'index'%}#services">Servicios</a>
+                  <a class="nav-link js-scroll-trigger" href="{% url 'index_us'%}#services">Services</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="{% url 'index'%}#descargar">Descargas</a>
+                  <a class="nav-link js-scroll-trigger" href="{% url 'index_us'%}#descargar">Downloads</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="{% url 'index'%}#contact">Contacto</a>
+                  <a class="nav-link js-scroll-trigger" href="{% url 'index_us'%}#contact">Contact</a>
                 </li>
-              
+
                 <li class="nav-item">
 
                   <div class="dropdown show">
                     <a class="nav-link  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <img class="lang-flag" src="{% static 'core/img/Colombia.png' %}" alt="Español">
+                      <img class="lang-flag" src="{% static 'core/img/English.png' %}" alt="English">
                     </a>
                   
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="nav-link dropdown-item" href="{% url 'index_us'%}#top"><img class="lang-flag" src="{% static 'core/img/English.png' %}" alt="English"></a>
+                      <a class="nav-link dropdown-item" href="{% url 'index'%}#top"><img class="lang-flag" src="{% static 'core/img/Colombia.png' %}" alt="Español"></a>
                     </div>
                   </div>
 
                 </li>
 
-            </ul>
+              </ul>
             </div>
           </div>
         </nav>
-      
+        <br>
+        <br>
+        <br>
+        <br>
     <!-- Contenido -->
     {% block content %}{% endblock %}
-    {%if request.path != "/" %}
-    <hr>
-    {%endif%}
+
       
         <!-- Footer -->
         <footer class="bg-light py-5">
@@ -82,13 +81,13 @@
         </footer>
       
         <!-- Bootstrap core JavaScript -->
-        <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
-        <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'processing/vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'processing/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
         <!-- Plugin JavaScript -->
-        <script src="{% static 'core/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-        <script src="{% static 'core/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'processing/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+        <script src="{% static 'processing/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
         <!-- Custom scripts for this template -->
-        <script src="{% static 'core/js/creative.min.js' %}"></script>
+        <script src="{% static 'processing/js/creative.min.js' %}"></script>
       
       </body>
 

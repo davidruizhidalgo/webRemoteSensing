@@ -142,9 +142,18 @@ def plot_imgCompare(request):
 		# Devolvemos la response
 		return response
 
+
+############################################################################################################################
+################################# VISTAS EN ESPAÑOL#########################################################################
+############################################################################################################################
 class DatasetListView(ListView):
-    model = DataSet
-	
+	model = DataSet
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		parametro = self.kwargs.get('parametro', None) 
+		context['Data'] = parametro
+		return context
+
 class DatasetDetailView(DetailView):
 	model = DataSet
 	#REALIZAR PROCESAMIENTO
@@ -152,6 +161,14 @@ class DatasetDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		object = super().get_object()
+		parametro = self.kwargs.get('parametro', None)
+
+		if parametro == 'Ejecutar Modelo':
+			training = False
+		else:
+			training = True
+		print('####################################')
+		print(training)
 		#procesos
 		process = Generate(object)
 		data, true_labels_test, pred_labels_test, class_names = process.execution(train= False)	
@@ -169,6 +186,7 @@ class DatasetDetailView(DetailView):
 		context['class_names'] = class_names
 		context['confusionData'] = confusionData
 		context['metadata'] = [ '%.2f' % elem for elem in metadata]
+		context['Parametro'] = parametro
 		return context
 
 class DatasetUpdate(UpdateView):
@@ -176,24 +194,112 @@ class DatasetUpdate(UpdateView):
 	form_class = ProcessingForm
 	template_name_suffix = '_update_form'
 
-	def get_success_url(self):
-		return reverse_lazy('updateFE', args=[self.object.id]) + '?ok'
+	def get_success_url(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		parametro = self.kwargs.get('parametro', None)
+		return reverse_lazy('updateFE', args=[parametro, self.object.id]) + '?ok'
 
 class DatasetUpdateFE(UpdateView):
 	model = DataSet
 	form_class = ProcessingForm
 	template_name_suffix = '_update_formFE'
 
-	def get_success_url(self):
-		return reverse_lazy('updateCL', args=[self.object.id]) + '?ok'
+	def get_success_url(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		parametro = self.kwargs.get('parametro', None)
+		return reverse_lazy('updateCL', args=[parametro, self.object.id]) + '?ok'
 
 class DatasetUpdateCL(UpdateView):
 	model = DataSet
 	form_class = ProcessingForm
 	template_name_suffix = '_update_formCL'
 
-	def get_success_url(self):
-		return reverse_lazy('img_processing', args=[self.object.id, slugify(self.object.name)]) + '?ok'
+	def get_success_url(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		parametro = self.kwargs.get('parametro', None)
+		return reverse_lazy('img_processing', args=[parametro, self.object.id, slugify(self.object.name)]) + '?ok'
 
 class ConstructionPageView(TemplateView):
     template_name = "processing/coming_soon.html"
+
+
+############################################################################################################################
+################################# VIEWS IN ENGLISH #########################################################################
+############################################################################################################################
+class DatasetListViewUS(ListView):
+	template_name_suffix = '_list_us'
+	model = DataSet
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		parametro = self.kwargs.get('parametro', None) 
+		context['Data'] = parametro
+		return context
+
+class DatasetDetailViewUS(DetailView):
+	template_name_suffix = '_detail_us'
+	model = DataSet
+	#REALIZAR PROCESAMIENTO
+	#RETORNAR VARIABLES DE CONTEXTO A LA VISTA
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		object = super().get_object()
+		parametro = self.kwargs.get('parametro', None)
+
+		if parametro == 'Execute Model':
+			training = False
+		else:
+			training = True
+		print('####################################')
+		print(training)
+		#procesos
+		process = Generate(object)
+		data, true_labels_test, pred_labels_test, class_names = process.execution(train= False)	
+		OA_data = data[0]*100
+		AA_data = data[1,0:]*100
+		kappa_data = data[2]
+		metadata = [len(class_names), AA_data[1:].mean()]
+		#Enviar datos a variables de contexto. OA, AA, Kappa, training logger
+		fig = plotlyConfusionMatrix(true_labels=true_labels_test, pred_labels=pred_labels_test, class_names=class_names)
+		confusionData = plot(fig, output_type='div', include_plotlyjs=False)
+
+		context['OA_data'] = [ '%.2f' % elem for elem in OA_data]
+		context['AA_data'] = [ '%.2f' % elem for elem in AA_data]
+		context['kappa_data'] = [ '%.2f' % elem for elem in kappa_data]
+		context['class_names'] = class_names
+		context['confusionData'] = confusionData
+		context['metadata'] = [ '%.2f' % elem for elem in metadata]
+		context['Parametro'] = parametro
+		return context
+
+class DatasetUpdateUS(UpdateView):
+	model = DataSet
+	form_class = ProcessingForm
+	template_name_suffix = '_update_form_us'
+
+	def get_success_url(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		parametro = self.kwargs.get('parametro', None)
+		return reverse_lazy('updateFE_us', args=[parametro, self.object.id]) + '?ok'
+
+class DatasetUpdateFEUS(UpdateView):
+	model = DataSet
+	form_class = ProcessingForm
+	template_name_suffix = '_update_formFE_us'
+
+	def get_success_url(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		parametro = self.kwargs.get('parametro', None)
+		return reverse_lazy('updateCL_us', args=[parametro, self.object.id]) + '?ok'
+
+class DatasetUpdateCLUS(UpdateView):
+	model = DataSet
+	form_class = ProcessingForm
+	template_name_suffix = '_update_formCL_us'
+
+	def get_success_url(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		parametro = self.kwargs.get('parametro', None)
+		return reverse_lazy('img_processing_us', args=[parametro, self.object.id, slugify(self.object.name)]) + '?ok'
+
+class ConstructionPageViewUS(TemplateView):
+    template_name = "processing/coming_soon_us.html"
