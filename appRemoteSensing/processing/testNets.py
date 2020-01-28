@@ -86,11 +86,18 @@ class testNetworks:
             datosSalida = clssNet.predict(features_test)
         #######################Ejecutar clasificador seleccionado#######################
         else:
-        #######################Cargar el clasificador seleccionado######################
-            clssNet = load_model(os.path.join(logger.path,test+'_'+clss+'.h5'))
-        #######################Ejecutar clasificador seleccionado#######################
-            datosSalida = clssNet.predict(datosPrueba)
-
+            if test[-3:] == 'CNN' or test[-3:] == 'INC':
+                #######################Cargar el clasificador seleccionado######################
+                clssNet = load_model(os.path.join(logger.path,test+'_'+clss+'.h5'))
+                #######################Ejecutar clasificador seleccionado#######################
+                datosSalida = clssNet.predict(datosPrueba)
+            else:
+                feNet = load_model(os.path.join(logger.path,test+'.h5'), custom_objects={'euclidean_distance_loss': self.euclidean_distance_loss})  
+                features_test = feNet.predict(datosPrueba)
+                #######################Cargar el clasificador seleccionado######################
+                clssNet = load_model(os.path.join(logger.path,test+'_'+clss+'.h5'))
+                #######################Ejecutar clasificador seleccionado#######################
+                datosSalida = clssNet.predict(features_test)
         ################################################################################
         #########################GENERAR MAPA FINAL DE CLASIFICACIÓN####################
         imagenSalida = preparar.predictionToImage(datosSalida)
@@ -113,4 +120,4 @@ class testNetworks:
         if datosSalida.ndim>1:
             datosSalida = datosSalida.argmax(axis=1)
 
-        return etiquetasPrueba, datosSalida, class_names, path
+        return imagenSalida, imgCompare, etiquetasPrueba, datosSalida, class_names, path

@@ -24,6 +24,7 @@ from threading import RLock
 verrou = RLock()
 
 import plotly.graph_objs as go
+import plotly.express as px
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 init_notebook_mode(connected=True)
 from sklearn.metrics import confusion_matrix
@@ -167,11 +168,9 @@ class DatasetDetailView(DetailView):
 			training = False
 		else:
 			training = True
-		print('####################################')
-		print(training)
 		#procesos
 		process = Generate(object)
-		data, true_labels_test, pred_labels_test, class_names = process.execution(train= False)	
+		imagenGT, imagenSalida, imgCompare, data, true_labels_test, pred_labels_test, class_names = process.execution(train= training)	
 		OA_data = data[0]*100
 		AA_data = data[1,0:]*100
 		kappa_data = data[2]
@@ -179,14 +178,36 @@ class DatasetDetailView(DetailView):
 		#Enviar datos a variables de contexto. OA, AA, Kappa, training logger
 		fig = plotlyConfusionMatrix(true_labels=true_labels_test, pred_labels=pred_labels_test, class_names=class_names)
 		confusionData = plot(fig, output_type='div', include_plotlyjs=False)
+		
+		fig1 = px.imshow(imagenGT, color_continuous_scale='Viridis')
+		fig1.update_layout(coloraxis_showscale=False)
+		groundTruth = plot(fig1, output_type='div', include_plotlyjs=False)
+
+		fig2 = px.imshow(imagenSalida, color_continuous_scale='Viridis')
+		fig2.update_layout(coloraxis_showscale=False)
+		imagenOutput = plot(fig2, output_type='div', include_plotlyjs=False)
+
+		fig3 = px.imshow(imgCompare, color_continuous_scale='Viridis')
+		fig3.update_layout(coloraxis_showscale=False)
+		imgComp = plot(fig3, output_type='div', include_plotlyjs=False)
+		
+		#Determiar si el modelo nececita ser entrenado
+		#Determiar si el modelo nececita ser entrenado
+		warningMSM = ''
+		if np.count_nonzero(imagenSalida) == 0:	
+			warningMSM = '- El modelo necesita ser entrenado'
 
 		context['OA_data'] = [ '%.2f' % elem for elem in OA_data]
 		context['AA_data'] = [ '%.2f' % elem for elem in AA_data]
 		context['kappa_data'] = [ '%.2f' % elem for elem in kappa_data]
 		context['class_names'] = class_names
 		context['confusionData'] = confusionData
+		context['groundTruth'] = groundTruth
+		context['imagenOutput'] = imagenOutput
+		context['imgComp'] = imgComp
 		context['metadata'] = [ '%.2f' % elem for elem in metadata]
 		context['Parametro'] = parametro
+		context['warningMSM'] = warningMSM
 		return context
 
 class DatasetUpdate(UpdateView):
@@ -249,11 +270,9 @@ class DatasetDetailViewUS(DetailView):
 			training = False
 		else:
 			training = True
-		print('####################################')
-		print(training)
 		#procesos
 		process = Generate(object)
-		data, true_labels_test, pred_labels_test, class_names = process.execution(train= False)	
+		imagenGT, imagenSalida, imgCompare, data, true_labels_test, pred_labels_test, class_names = process.execution(train= training)	
 		OA_data = data[0]*100
 		AA_data = data[1,0:]*100
 		kappa_data = data[2]
@@ -261,14 +280,34 @@ class DatasetDetailViewUS(DetailView):
 		#Enviar datos a variables de contexto. OA, AA, Kappa, training logger
 		fig = plotlyConfusionMatrix(true_labels=true_labels_test, pred_labels=pred_labels_test, class_names=class_names)
 		confusionData = plot(fig, output_type='div', include_plotlyjs=False)
+		
+		fig1 = px.imshow(imagenGT, color_continuous_scale='Viridis')
+		fig1.update_layout(coloraxis_showscale=False)
+		groundTruth = plot(fig1, output_type='div', include_plotlyjs=False)
 
+		fig2 = px.imshow(imagenSalida, color_continuous_scale='Viridis')
+		fig2.update_layout(coloraxis_showscale=False)
+		imagenOutput = plot(fig2, output_type='div', include_plotlyjs=False)
+
+		fig3 = px.imshow(imgCompare, color_continuous_scale='Viridis')
+		fig3.update_layout(coloraxis_showscale=False)
+		imgComp = plot(fig3, output_type='div', include_plotlyjs=False)
+
+		warningMSM = ''
+		if np.count_nonzero(imagenSalida) == 0:	
+			warningMSM = ' - The model needs to be training'
+		
 		context['OA_data'] = [ '%.2f' % elem for elem in OA_data]
 		context['AA_data'] = [ '%.2f' % elem for elem in AA_data]
 		context['kappa_data'] = [ '%.2f' % elem for elem in kappa_data]
 		context['class_names'] = class_names
 		context['confusionData'] = confusionData
+		context['groundTruth'] = groundTruth
+		context['imagenOutput'] = imagenOutput
+		context['imgComp'] = imgComp
 		context['metadata'] = [ '%.2f' % elem for elem in metadata]
 		context['Parametro'] = parametro
+		context['warningMSM'] = warningMSM
 		return context
 
 class DatasetUpdateUS(UpdateView):

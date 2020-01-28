@@ -7,21 +7,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+<style>
+    #heading { color: #FF0000; }
+</style>
+
 <div class="container">
     <br>
     <!--MAPAS DE CLASIFICACIóN-->
     <div class="row"> 
         <h3 class="subsection-heading title">Resultados Dataset {{dataset.name}}</h3> 
+        <h3 id="heading" class="subsection-heading title" >{{warningMSM}}</h3> 
     </div>
     <div class="row project">  	
         <div class="col-lg-4 ">
-           <img src= "{% url 'plot_groundtruth' %}" style = "height:100%; width:100%"  />
+           <!--<img src= "{% url 'plot_groundtruth' %}" style = "height:100%; width:100%"  />-->
+           {% autoescape off %} {{groundTruth}} {% endautoescape %}
         </div>
         <div class="col-lg-4 ">
-            <img src= "{% url 'plot_classification' %}" style = "height:100%; width:100%"  />
+            <!--<img src= "{% url 'plot_classification' %}" style = "height:100%; width:100%"  />-->
+            {% autoescape off %} {{imagenOutput}} {% endautoescape %}
         </div> 
         <div class="col-lg-4 ">
-        <img src= "{% url 'plot_imgCompare' %}" style = "height:100%; width:100%"  />
+            <!--<img src= "{% url 'plot_imgCompare' %}" style = "height:100%; width:100%"  /> -->
+            {% autoescape off %} {{imgComp}} {% endautoescape %}
+ 
         </div>
     </div>
     <!--INDICES DE DESEMPEÑo-->
