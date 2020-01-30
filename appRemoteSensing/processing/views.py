@@ -180,15 +180,15 @@ class DatasetDetailView(DetailView):
 		confusionData = plot(fig, output_type='div', include_plotlyjs=False)
 		
 		fig1 = px.imshow(imagenGT, color_continuous_scale='Viridis')
-		fig1.update_layout(coloraxis_showscale=False)
+		fig1.update_layout(title={'text': "Salida Deseada",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'}, coloraxis_showscale=False)
 		groundTruth = plot(fig1, output_type='div', include_plotlyjs=False)
 
 		fig2 = px.imshow(imagenSalida, color_continuous_scale='Viridis')
-		fig2.update_layout(coloraxis_showscale=False)
+		fig2.update_layout(title={'text': "Imagen de Salida",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'}, coloraxis_showscale=False)
 		imagenOutput = plot(fig2, output_type='div', include_plotlyjs=False)
 
 		fig3 = px.imshow(imgCompare, color_continuous_scale='Viridis')
-		fig3.update_layout(coloraxis_showscale=False)
+		fig3.update_layout(title={'text': "Imagen Comparativa",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},coloraxis_showscale=False)
 		imgComp = plot(fig3, output_type='div', include_plotlyjs=False)
 		
 		#Determiar si el modelo nececita ser entrenado
@@ -282,15 +282,15 @@ class DatasetDetailViewUS(DetailView):
 		confusionData = plot(fig, output_type='div', include_plotlyjs=False)
 		
 		fig1 = px.imshow(imagenGT, color_continuous_scale='Viridis')
-		fig1.update_layout(coloraxis_showscale=False)
+		fig1.update_layout(title={'text': "Ground Truth",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},coloraxis_showscale=False)
 		groundTruth = plot(fig1, output_type='div', include_plotlyjs=False)
 
 		fig2 = px.imshow(imagenSalida, color_continuous_scale='Viridis')
-		fig2.update_layout(coloraxis_showscale=False)
+		fig2.update_layout(title={'text': "Image Output",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},coloraxis_showscale=False)
 		imagenOutput = plot(fig2, output_type='div', include_plotlyjs=False)
 
 		fig3 = px.imshow(imgCompare, color_continuous_scale='Viridis')
-		fig3.update_layout(coloraxis_showscale=False)
+		fig3.update_layout(title={'text': "Image Comparation",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},coloraxis_showscale=False)
 		imgComp = plot(fig3, output_type='div', include_plotlyjs=False)
 
 		warningMSM = ''
